@@ -13,6 +13,19 @@ const app = express();
 
 
 connectDB()
+.then(() => {
+    app.on("error",(error) => {
+        console.log("ERROR" , error);        
+        throw error
+    })
+    app.listen(process.env.PORT || 8000,() => {
+        console.log(`server is ranning at port ${process.env.PORT}`);
+    })
+})
+.catch((error) => {
+    console.log('manfo db connection fail ' , error);
+    
+})
 
 
 
